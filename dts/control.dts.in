@@ -1,0 +1,11 @@
+/dts-v1/;
+/ {
+	signature {
+		key-my_key {
+			required ="image";
+			algo ="sha1,rsa4096";
+			key-name-hint ="uboot_sign_key";
+#include "control-gen-pubkey.dtsi"
+		};
+	};
+}; 
