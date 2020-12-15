@@ -14,8 +14,34 @@
 			compression = "gzip";
 			load = <0x8080000>;
 			entry = <0x8080000>;
+
 			hash@1 {
-					algo = "sha256";
+				algo = "sha256";
+			};
+
+			signature@1 {
+				algo ="sha256,rsa4096";
+				key-name-hint ="uboot_sign_key";
+			};
+		};
+
+		ramdisk@1 {
+			description = "ramdisk";
+			data = /incbin/("artifact.bin");
+			type = "ramdisk";
+			arch = "arm";
+			os = "linux";
+			compression = "none";
+			load = <0x00000000>;
+			entry = <0x00000000>;
+
+			hash@1 {
+				algo = "sha256";
+			};
+
+			signature@1 {
+				algo ="sha256,rsa4096";
+				key-name-hint ="uboot_sign_key";
 			};
 		};
 	};
@@ -25,15 +51,15 @@
 		conf@1 {
 			description = "config";
 			kernel = "kernel@1";
+			ramdisk = "ramdisk@1";
 
 			hash@1 {
-					algo = "sha256";
+				algo = "sha256";
 			};
 
 			signature@1 {
-					algo = "sha256,rsa4096";
-					key-name-hint = "uboot_sign_key";
-					sign-images = "kernel";
+				algo ="sha256,rsa4096";
+				key-name-hint ="uboot_sign_key";
 			};
 		};
 	};
