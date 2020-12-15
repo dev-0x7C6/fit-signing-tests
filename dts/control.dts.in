@@ -1,7 +1,7 @@
 /dts-v1/;
 / {
 	signature {
-		key-my_key {
+		key-uboot_sign_key {
 			required ="image";
 			algo ="sha1,rsa4096";
 			key-name-hint ="uboot_sign_key";
